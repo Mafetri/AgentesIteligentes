@@ -32,7 +32,7 @@
 
 <#TemperatureMapping>
   rml:logicalSource [
-    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/master/daily_tmp.csv";
+    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/master/daily_tmp.json";
     rml:referenceFormulation ql:JSON;
     rml:iterator "$[*]"
   ];
