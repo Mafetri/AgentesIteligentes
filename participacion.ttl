@@ -20,7 +20,7 @@
 
 <#ParticipationMapping>
   rml:logicalSource [
-    rml:source "participaciones.json";
+    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/master/participacion.json";
     rml:referenceFormulation ql:JSONPath;
     rml:iterator "$[*]"
   ].
@@ -48,7 +48,7 @@
 # Relación para directores
 <#ParticipationMapping_Director>
   rml:logicalSource [
-    rml:source "participaciones.json";
+    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/master/participacion.json";
     rml:referenceFormulation ql:JSONPath;
     rml:iterator "$[?(@.rol=='Director')]"
   ].
@@ -70,7 +70,7 @@
 # Relación para actores
 <#ParticipationMapping_Actor>
   rml:logicalSource [
-    rml:source "participaciones.json";
+    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/master/participacion.json";
     rml:referenceFormulation ql:JSONPath;
     rml:iterator "$[?(@.rol=='Actor')]"
   ].
