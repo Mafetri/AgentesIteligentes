@@ -18,73 +18,45 @@
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix org: <http://www.w3.org/ns/org#> .
 
-<#ParticipationMapping>
+<#DirectorMapping>
   rml:logicalSource [
-    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/master/participacion.json";
-    rml:referenceFormulation ql:JSONPath;
-    rml:iterator "$[*]"
-  ].
-
-<#ParticipationMapping>
-  rr:subjectMap [
-    rr:template "http://example.org/movies/{id_persona}";
-    rr:class schema:Person
-  ].
-
-<#ParticipationMapping>
-  rr:predicateObjectMap [
-    rr:predicate schema:name;
-    rr:objectMap [ rml:reference "nombre" ]
-  ].
-
-<#ParticipationMapping>
-  rr:predicateObjectMap [
-    rr:predicate schema:hasOccupation;
-    rr:objectMap [ 
-      rr:template "http://example.org/movies/{rol}"
-    ]
-  ].
-
-# Relación para directores
-<#ParticipationMapping_Director>
-  rml:logicalSource [
-    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/master/participacion.json";
+    rml:source "participaciones.json";
     rml:referenceFormulation ql:JSONPath;
     rml:iterator "$[?(@.rol=='Director')]"
   ].
 
-<#ParticipationMapping_Director>
+<#DirectorMapping>
   rr:subjectMap [
-    rr:template "http://example.org/movies/{id_persona}";
+    rr:template "http://example.org/movies/{id_pelicula}";
   ].
 
-<#ParticipationMapping_Director>
+<#DirectorMapping>
   rr:predicateObjectMap [
     rr:predicate schema:director;
     rr:objectMap [
-      rr:template "http://example.org/movies/{id_pelicula}";
+      rr:template "http://example.org/movies/{id_persona}";
       rr:termType rr:IRI
     ]
   ].
 
-# Relación para actores
-<#ParticipationMapping_Actor>
+<#ActorMapping>
   rml:logicalSource [
-    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/master/participacion.json";
+    rml:source "participaciones.json";
     rml:referenceFormulation ql:JSONPath;
     rml:iterator "$[?(@.rol=='Actor')]"
   ].
 
-<#ParticipationMapping_Actor>
+<#ActorMapping>
   rr:subjectMap [
-    rr:template "http://example.org/movies/{id_persona}";
+    rr:template "http://example.org/movies/{id_pelicula}";
   ].
 
-<#ParticipationMapping_Actor>
+<#ActorMapping>
   rr:predicateObjectMap [
     rr:predicate schema:actor;
     rr:objectMap [
-      rr:template "http://example.org/movies/{id_pelicula}";
+      rr:template "http://example.org/movies/{id_persona}";
       rr:termType rr:IRI
     ]
   ].
+
