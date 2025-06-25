@@ -20,7 +20,7 @@
 
 <#ParticipationMapping>
   rml:logicalSource [
-    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/main/participacion.json";
+    rml:source "participaciones.json";
     rml:referenceFormulation ql:JSONPath;
     rml:iterator "$[*]"
   ].
@@ -45,32 +45,46 @@
     ]
   ].
 
-<#ParticipationMapping>
+# Relación para directores
+<#ParticipationMapping_Director>
+  rml:logicalSource [
+    rml:source "participaciones.json";
+    rml:referenceFormulation ql:JSONPath;
+    rml:iterator "$[?(@.rol=='Director')]"
+  ].
+
+<#ParticipationMapping_Director>
+  rr:subjectMap [
+    rr:template "http://example.org/movies/{id_persona}";
+  ].
+
+<#ParticipationMapping_Director>
   rr:predicateObjectMap [
-    rr:predicateMap [
-      rr:constant schema:actor
-    ];
+    rr:predicate schema:director;
     rr:objectMap [
       rr:template "http://example.org/movies/{id_pelicula}";
       rr:termType rr:IRI
-    ];
-    rr:condition [
-      rr:reference "rol";
-      rr:equals "Actor"
     ]
   ].
 
-<#ParticipationMapping>
+# Relación para actores
+<#ParticipationMapping_Actor>
+  rml:logicalSource [
+    rml:source "participaciones.json";
+    rml:referenceFormulation ql:JSONPath;
+    rml:iterator "$[?(@.rol=='Actor')]"
+  ].
+
+<#ParticipationMapping_Actor>
+  rr:subjectMap [
+    rr:template "http://example.org/movies/{id_persona}";
+  ].
+
+<#ParticipationMapping_Actor>
   rr:predicateObjectMap [
-    rr:predicateMap [
-      rr:constant schema:director
-    ];
+    rr:predicate schema:actor;
     rr:objectMap [
       rr:template "http://example.org/movies/{id_pelicula}";
       rr:termType rr:IRI
-    ];
-    rr:condition [
-      rr:reference "rol";
-      rr:equals "Director"
     ]
   ].
