@@ -1,0 +1,58 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix ex: <http://example.org/weather#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+### Mapeo de Estaciones Meteorológicas (CSV)
+
+<#EstacionesMapping>
+  rml:logicalSource [
+    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/master/estaciones.csv";
+    rml:referenceFormulation ql:CSV
+  ];
+  rr:subjectMap [
+    rr:template "http://example.org/weather/station/{station_id}";
+    rr:class ex:WeatherStation
+  ];
+  rr:predicateObjectMap [
+    rr:predicate ex:name;
+    rr:objectMap [ rml:reference "name"; rr:datatype xsd:string ]
+  ];
+  rr:predicateObjectMap [
+    rr:predicate ex:latitude;
+    rr:objectMap [ rml:reference "latitude"; rr:datatype xsd:decimal ]
+  ];
+  rr:predicateObjectMap [
+    rr:predicate ex:longitude;
+    rr:objectMap [ rml:reference "longitude"; rr:datatype xsd:decimal ]
+  ].
+
+### Mapeo de Mediciones Diarias (JSON)
+
+<#MedicionesMapping>
+  rml:logicalSource [
+    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/master/mediciones.json";
+    rml:referenceFormulation ql:JSON;
+    rml:iterator "$[*]"
+  ];
+  rr:subjectMap [
+    rr:template "http://example.org/weather/observation/{station}/{date}";
+    rr:class ex:TemperatureObservation
+  ];
+  rr:predicateObjectMap [
+    rr:predicate ex:station;
+    rr:objectMap [ rr:template "http://example.org/weather/station/{station}" ]
+  ];
+  rr:predicateObjectMap [
+    rr:predicate ex:date;
+    rr:objectMap [ rml:reference "date"; rr:datatype xsd:date ]
+  ];
+  rr:predicateObjectMap [
+    rr:predicate ex:temperatureMax;
+    rr:objectMap [ rml:reference "temperature_max"; rr:datatype xsd:decimal ]
+  ];
+  rr:predicateObjectMap [
+    rr:predicate ex:temperatureMin;
+    rr:objectMap [ rml:reference "temperature_min"; rr:datatype xsd:decimal ]
+  ].
