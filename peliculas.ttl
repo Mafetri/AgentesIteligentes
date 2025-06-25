@@ -20,7 +20,7 @@
 
 <#MovieMapping>
   rml:logicalSource [
-    rml:source "peliculas.csv";
+    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/main/peliculas.csv";
     rml:referenceFormulation ql:CSV
   ].
 
