@@ -20,7 +20,7 @@
 
 <#DirectorMapping>
   rml:logicalSource [
-    rml:source "participaciones.json";
+    rml:source "https://raw.githubusercontent.com/mafetri/AgentesIteligentes/master/participacion.json";
     rml:referenceFormulation ql:JSONPath;
     rml:iterator "$[?(@.rol=='Director')]"
   ].
