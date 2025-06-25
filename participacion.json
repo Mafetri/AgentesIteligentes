@@ -1,0 +1,32 @@
+[
+	{
+		"id_persona": "p1",
+		"nombre": "Sofia Coppola",
+		"rol": "Director",
+		"id_pelicula": "m1"
+	},
+	{
+		"id_persona": "p2",
+		"nombre": "Kirsten Dunst",
+		"rol": "Actor",
+		"id_pelicula": "m1"
+	},
+	{
+		"id_persona": "p3",
+		"nombre": "Michael Mann",
+		"rol": "Director",
+		"id_pelicula": "m2"
+	},
+	{
+		"id_persona": "p4",
+		"nombre": "Al Pacino",
+		"rol": "Actor",
+		"id_pelicula": "m2"
+	},
+	{
+		"id_persona": "p5",
+		"nombre": "Robert De Niro",
+		"rol": "Actor",
+		"id_pelicula": "m2"
+	}
+]

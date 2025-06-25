@@ -1,0 +1,76 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#>.
+@prefix fno: <https://w3id.org/function/ontology#>.
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#>.
+@prefix void: <http://rdfs.org/ns/void#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix rml: <http://semweb.mmlab.be/ns/rml#>.
+@prefix ql: <http://semweb.mmlab.be/ns/ql#>.
+@prefix : <http://mapping.example.com/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rev: <http://purl.org/stuff/rev#>.
+@prefix gtfs: <http://vocab.gtfs.org/terms#>.
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.
+@prefix schema: <http://schema.org/>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix org: <http://www.w3.org/ns/org#> .
+
+<#ParticipationMapping>
+  rml:logicalSource [
+    rml:source "participaciones.json";
+    rml:referenceFormulation ql:JSONPath;
+    rml:iterator "$[*]"
+  ].
+
+<#ParticipationMapping>
+  rr:subjectMap [
+    rr:template "http://example.org/movies/{id_persona}";
+    rr:class schema:Person
+  ].
+
+<#ParticipationMapping>
+  rr:predicateObjectMap [
+    rr:predicate schema:name;
+    rr:objectMap [ rml:reference "nombre" ]
+  ].
+
+<#ParticipationMapping>
+  rr:predicateObjectMap [
+    rr:predicate schema:hasOccupation;
+    rr:objectMap [ 
+      rr:template "http://example.org/movies/{rol}"
+    ]
+  ].
+
+<#ParticipationMapping>
+  rr:predicateObjectMap [
+    rr:predicateMap [
+      rr:constant schema:actor
+    ];
+    rr:objectMap [
+      rr:template "http://example.org/movies/{id_pelicula}";
+      rr:termType rr:IRI
+    ];
+    rr:condition [
+      rr:reference "rol";
+      rr:equals "Actor"
+    ]
+  ].
+
+<#ParticipationMapping>
+  rr:predicateObjectMap [
+    rr:predicateMap [
+      rr:constant schema:director
+    ];
+    rr:objectMap [
+      rr:template "http://example.org/movies/{id_pelicula}";
+      rr:termType rr:IRI
+    ];
+    rr:condition [
+      rr:reference "rol";
+      rr:equals "Director"
+    ]
+  ].
